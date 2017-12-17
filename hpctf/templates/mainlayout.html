@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+  <head>
+    <title>{% block title %}Кубок CTF{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">-->
+    <link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet" media="screen">
+    <script src="/static/js/angular.min.js"></script>
+    <script src="/static/js/controllers.js"></script>
+    <!--Мы бедные индуские программисты писали этот код в поезеде, пожалуйста не ругайте нас-->
+  </head>
+      {% block content %}
+      {% endblock %}
+</html>

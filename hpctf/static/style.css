@@ -1,0 +1,84 @@
+.tasklist .category {
+	float: right;
+	height: 10px;
+	
+}
+.tasklist .name {
+	margin-top: 15px;
+	font-size: 1.3em;
+	line-height: 1.5em;
+	height: 30px;
+	overflow: hidden;
+	clear: both;
+	text-align: center;
+	clear: both;
+}
+.tasklist .cost {
+	margin-top: -10px;
+	font-size: 3em;
+	line-height: 1.3em;
+	text-align: center;
+
+}
+.tasklist .owner {
+	text-align: center;
+	height: 20px;
+}
+.tasklist .time {
+	text-align: center;
+}
+/*
+.tasklist .span3:hover{
+	background:#fcf8e3;
+}*/
+.tasklist a{
+	color: #000;
+}
+.tasklist a:hover{
+	color: #000;
+	text-decoration: none;
+}
+
+.nm{
+	margin-left: 0 !important;
+}
+.blocked {
+	background: #777;
+}
+.solved {
+	/*background-image: linear-gradient(to bottom,#62c462,#51a351);*/
+	background:	#51a351;
+}
+
+
+.closed{
+	background-image: linear-gradient(to bottom,#ee5f5b,#bd362f);
+	background:	#ee5f5b;
+}
+
+.current{
+	background-image: linear-gradient(to bottom, #fbb450, #f89406);
+}
+
+.legend {
+	margin-bottom: 5px;
+}
+
+.legend .btn{
+	width: 2px;
+	height: 15px;
+	margin-right: 10px;
+}
+
+.tasklist .btn {
+	margin-bottom: 15px;
+}
+#detail .category {
+	float: right;
+	font-size: 1.2em;
+	margin-top: -20px;
+}
+#detail .title {
+	font-size: 1.4em;
+	line-height: 1.4em;
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="78145ea0-74e9-44dc-8dc1-0c9aa213e355" name="Flag rush" url="http://5.101.72.226">
+        <fileTransfer host="5.101.72.226" port="22540" privateKey="$USER_HOME$/Загрузки/Telegram Desktop/letoctf" rootFolder="/home/jury/flagrush" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22540" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% if error %}
+<div class="alert alert-error">
+    {{error}}
+</div>
+{% endif %}
+
+<form class="form-signin" method="post">
+    <h2 class="form-signin-heading">Регистрация</h2>
+    <input type="text" class="input-block-level" name="name" placeholder="Name" value="{{name}}">
+    <input type="text" class="input-block-level" name="email" placeholder="Email" value="{{email}}">
+    <input type="text" class="input-block-level" name="team" placeholder="Team" value="{{team}}">
+    <input type="password" class="input-block-level" name="password" placeholder="password" value="{{password}}">
+    <input type="text" class="input-block-level" name="key" placeholder="key" value="{{key}}">
+    <button class="btn btn-large btn-primary" type="submit">Зарегаться</button>
+</form>
+{% endblock %}

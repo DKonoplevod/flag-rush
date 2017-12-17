@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-error">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+
+{% if error %}
+<div class="alert alert-error">
+    {{error}}
+</div>
+{% endif %}
+<form class="form-signin" method="post">
+    <h2 class="form-signin-heading">Авторизация</h2>
+    <input type="text" class="input-block-level" name="name" placeholder="Name" value="{{name}}">
+    <input type="password" class="input-block-level" name="password" placeholder="Password" value="{{password}}">
+    <button class="btn btn-large btn-primary" type="submit">Вход</button>
+</form>
+{% endblock %}

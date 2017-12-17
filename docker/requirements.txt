@@ -1,0 +1,12 @@
+Flask
+Flask-Login
+Flask-Script
+Flask-WTF
+Jinja2
+WTForms
+Werkzeug
+argparse
+flask-mongoengine
+mongoengine
+pymongo
+# wsgiref

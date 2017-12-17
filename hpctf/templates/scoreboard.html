@@ -1,0 +1,42 @@
+{% extends "mainlayout.html" %}
+
+{% block content %}
+<body ng-controller="TaskListCtrl">
+<div class="container-fluid">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">Кубок CTF</a>
+            <ul class="nav">
+                <li><a href="/">Задания</a></li>
+                <li class="active"><a href="/scoreboard">Очки</a></li>
+                <li><a href="/logout">Выход</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <br/>
+    <div class="container">
+        <table class="table table-striped table-bordered">
+            <tr>
+                <th>Место</th>
+                <th>Игрок</th>
+                <th>Команда</th>
+                <th>Решено тасков</th>
+                <th>Прибыль в минуту</th>
+                <th>Деньги</th>
+            </tr>
+            {% for user in users|sort(attribute='money', reverse= True) %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.team }}</td>
+                <td>{{ user.solved_tasks|length }}</td>
+                <td>{{ user.profit }}</td>
+                <td>{{ user.money }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+{% endblock %}

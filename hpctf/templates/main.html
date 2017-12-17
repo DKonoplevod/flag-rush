@@ -1,0 +1,164 @@
+{% extends "mainlayout.html" %}
+
+{% block content %}
+{% raw %}
+<body ng-controller="TaskListCtrl">
+<div class="container-fluid">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">Кубок CTF</a>
+            <ul class="nav">
+                <li class="active"><a href="/">Задания</a></li>
+                <li><a href="/scoreboard">Очки</a></li>
+                <li><a href="/logout">Выход</a></li>
+            </ul>
+            <p class="navbar-text pull-right">Привет {{user.name}} ({{user.money}} &euro;)</p>
+        </div>
+    </div>
+    <h4>Легенда</h4>
+    <div class="row legend">
+        <div class="span4">
+            <div class="btn"></div>
+            Свободен
+        </div>
+        <div class="span4">
+            <div class="btn btn-info"></div>
+            Решаемый таск
+        </div>
+        <div class="span4">
+            <div class="btn btn-danger"></div>
+            Проваленный таск
+        </div>
+    </div>
+    <div class="row legend">
+        <div class="span4">
+            <div class="btn btn-warning"></div>
+            Таск занят другим игроком
+        </div>
+        <div class="span4">
+            <div class="btn btn-success"></div>
+            Решенный таск, вы хозяин
+        </div>
+        <div class="span4">
+            <div class="btn btn-primary"></div>
+            Решенный таск
+        </div>
+    </div>
+    <br/>
+    <div class="row-fluid">
+        <div class="span8 tasklist">
+            <div class="row-fluid">
+                <div class="alert {{alert.type}}" ng-repeat="alert in alerts" ng-hide="ooops(alert.id)">
+                    <button type="button" class="close" data-dismiss="alert" ng-click="removeNotify(alert.id)">&times;
+                    </button>
+                    {{alert.message}}
+                </div>
+                <div ng-repeat="task in tasks | orderBy: 'base_cost'" class="span3 btn" ng-class="{
+              'btn-warning':task.solver!=''&&task.solver!=user.id,
+              'btn-info':task.solver!=''&&task.solver==user.id,
+               nm : $index%4==0,
+              'btn-danger':task.closed==true,
+              'btn-success':task.solved==true && task.owner==user.id,
+              'btn-primary':task.solved==true && task.owner!=user.id
+              }" ng-click="getDetail(task)">
+
+                    <div class="category">{{task.category}}</div>
+                    <div class="name">{{task.name}}</div>
+                    <div class="cost">{{task.cost}}&euro;</div>
+                    <div class="time">{{(task.base_time-task.base_time % 60 )/60}} мин</div>
+                    <div class="owner">{{task.owner_name}}</div>
+
+                </div>
+
+            </div>
+            {{counter}}
+        </div>
+        <div class="span4">
+            <div id="detail" class=" well" ng-show="task.id">
+                <h2 class="category">{{task.category}}</h2>
+                <h1 class="title" title="{{task.name}}">{{task.name}}</h1>
+
+                <table class="table table-striped">
+                    <tr>
+                        <td>Базовая стоимость</td>
+                        <td>{{task.base_cost}}&euro;</td>
+                    </tr>
+
+                    <tr ng-show="task.owner_name">
+                        <td>Этот таск последней<br> решила команда</td>
+                        <td>{{task.owner_name}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Время на решение</td>
+                        <td>{{task.time}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Прибыль в минуту</td>
+                        <td>{{task.base_cost*0.02}}&euro;</td>
+                    </tr>
+
+                    <tr ng-show="task.solver_name">
+                        <td>Сейчас решает команда</td>
+                        <td>{{task.solver_name}}</td>
+                    </tr>
+                    <tr ng-show="task.time_remain">
+                        <td>Таск завершится через</td>
+                        <td>{{task.time_remain}} сек.</td>
+                    </tr>
+                </table>
+
+                <hr/>
+
+                <button type="submit" class="btn btn-primary btn-large btn-block" ng-click="openTask(task.id)"
+                        ng-hide="task.solved || task.solver==user.id || task.owner==user.id">Открыть
+                </button>
+
+                <div ng-show="task.solver==user.id">
+
+                    <div class="well" style="word-break: break-word; background:#fcf8e3" ng-bind-html-unsafe="task.description"></div>
+
+                    <hr/>
+                    <form class="form-inline">
+                        <b><label>Не успеваете? Добавьте время!</label></b><br />
+                        <div class="input-append">
+                            <input type="number" min="1" class="input-mini" ng-model="duration"/><span class="add-on">мин</span>
+                        </div>
+                        <button type="submit" class="btn btn-info" ng-click="freezeTask(duration*60)">Freeze</button>
+                        <label> &nbsp;&nbsp;&nbsp;{{(duration+0)*10}}&euro;</label>
+                    </form>
+                    <hr/>
+                    <form class="form-inline">
+                        <b><label>Сдать флаг</label></b><br />
+                        <input type="text" placeholder="Flag" ng-model="flag"/>
+                        <button type="submit" class="btn btn-success" ng-click="checkTask(flag)">Check</button>
+                    </form>
+
+                    <hr/>
+
+                    <button type="submit" class="btn btn-danger btn-large btn-block" ng-click="closeTask()">Сдаюсь
+                    </button>
+
+                </div>
+                <div ng-show="task.owner==user.id">
+                    <hr/>
+                    <form class="form-inline">
+                        Вы можете
+                        <div class="input-append">
+                            <input type="text" min="1" class="input-mini" ng-model="cost"/><span
+                                class="add-on">&euro;</span>
+                        </div>
+                        <button type="submit" class="btn btn-success" ng-click="costTask(task.id, cost)">Оценить
+                        </button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{% endraw %}
+{% endblock %}
