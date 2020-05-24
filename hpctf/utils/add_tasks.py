@@ -9,13 +9,31 @@ from mongoengine.queryset import DoesNotExist
 
 tasks = [
     {
-        'name': 'Some task title',
+        'name': 'The simplest task',
+        'cat': 'start',
+        'description': 'Flag is "tеstflаg. Flag format democtf{...}"',
+        'flag': 'democtf{testflag}',
+        'base_cost': '10',
+        'base_time': '15',
+        'cost': 10
+    },
+    {
+        'name': 'Simple task',
+        'cat': 'misc',
+        'description': 'EasyCTF started on November 3rd, 2015 this year. Find the position where the numerical representation of the month and day of this date 1103 is first found within pi. Use any language you want! The flag is the position of the first digit of the date within pi, where 3 is the first digit and the decimal point . is not considered a position.',
+        'flag': 'democtf{3494}',
+        'base_cost': '200',
+        'base_time': '20',
+        'cost': 200
+    },
+    {
+        'name': 'Difficult task',
         'cat': 'crypto',
-        'description': 'Sample description',
-        'flag': 'someflag',
-        'base_cost': '250',
+        'description': 'Apparently some bitwise boi is posting flags all over the place. He gave us a hint, though. ZGVtb2N0ZntmbGFnX2Zvcl9jcnlwdG99',
+        'flag': 'democtf{flag_for_crypto}',
+        'base_cost': '300',
         'base_time': '30',
-        'cost': 250
+        'cost': 300
     }
 ]
 

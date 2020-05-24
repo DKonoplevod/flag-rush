@@ -8,11 +8,10 @@ services:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/data/logs
     volumes:
-      - ./mongo:/data/db
+      - mongodata:/data/db
       - ./logs:/data/logs
     ports:
       - 27017:27017
-    command: --smallfiles
   gunicorn:
     container_name: "frush_flask"
     build:
@@ -28,3 +27,6 @@ services:
     volumes:
       - .:/app
     command: gunicorn app:app -w 4 -b 0.0.0.0:8000 --log-level DEBUG --log-file test.log --reload
+    
+volumes:
+  mongodata:

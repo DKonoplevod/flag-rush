@@ -11,10 +11,31 @@ from mongoengine.queryset import DoesNotExist
 users = [
     {
         'email': 'test@mail.ru',
-        'team': 'test',
+        'team': 'FMI',
         'password': 'test',
         'money': '500',
         'name': 'user1'
+    },
+    {
+        'email': 'test2@mail.ru',
+        'team': 'FMI',
+        'password': 'test',
+        'money': '500',
+        'name': 'user2'
+    },
+    {
+        'email': 'test3@mail.ru',
+        'team': 'FMI-2',
+        'password': 'test',
+        'money': '500',
+        'name': 'user3'
+    },
+    {
+        'email': 'test4@mail.ru',
+        'team': 'FMI-2',
+        'password': 'test',
+        'money': '500',
+        'name': 'user4'
     }
 ]
 
